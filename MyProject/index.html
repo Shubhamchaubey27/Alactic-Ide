@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Alactic IDE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <button id="newFileBtn">New File</button>
+      <button id="saveFileBtn">Save File</button>
+      <button class="btn">Open File</button>
+      <button class="btn">Preview</button>
+      <button class="btn">Build</button>
+      <button class="btn">Search</button>
+      <div class="icons">
+        <span>⚛️</span>
+        <span>🧠</span>
+        <span>📁</span>
+      </div>
+    </nav>
+  </header>
+
+  <div class="tabs">
+    <div class="logo">Alactic IDE</div>
+    <div class="tab active">{ } Untitled-1 <span class="close">○</span></div>
+    <div class="tab">{ } Untitled-2 <span class="close">○</span></div>
+    <div class="tab">{ } Untitled-3 <span class="close">○</span></div>
+    <div class="add-tab">+</div>
+  </div>
+
+  <main>
+    <div class="editor-container">
+      <div class="line-numbers" aria-hidden="true">
+        1
+      </div>
+      <textarea class="code-area" spellcheck="false" placeholder="// start typing..."></textarea>
+    </div>
+
+    <div class="sidebar">
+      <div class="folder-name">Folder Name</div>
+      <ul>
+        <li class="btn">📄 File.actict(1)</li>
+        <li class="btn">📄 File.actict(2)</li>
+        <li class="btn">📄 File.actict(3)</li>
+        <li class="btn">📄 File.actict(4)</li>
+      </ul>
+    </div>
+    <div class="file-explorer">
+    <div class="my-folder">My Folder</div>
+    <ul class="file-list"></ul> <!-- files will appear here -->
+</div>
+
+  </main>
+
+  <footer>
+    <nav class="manu-bar">
+      <div class="status-options">
+        <span class="option">Live Server</span>
+        <span class="option">Git</span>
+        <span class="option">Errors</span>
+        <span class="option">Warnings</span>
+        <div class="icon">🛠️</div>
+        <div class="icon">⚙️</div>
+      </div>
+    </nav>
+  </footer>
+
+  <script src="scripts.js"></script>
+  <script src="activetab.js"></script>
+</body>
+</html>

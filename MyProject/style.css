@@ -1,0 +1,386 @@
+/* style.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f5f1e9;
+    color: #333;
+}
+
+header {
+   
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    background-color: #f5f1e9;
+    border-bottom: 1px solid #ddd;
+    flex-wrap: wrap;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #8b5a2b;
+    margin-right: 8px;
+}
+
+nav {
+    
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 0px;
+}
+
+nav button {
+    
+    background-color: #f5f1e9;
+    border: none;
+    padding: 8px 16px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #333;
+}
+.btn {
+    background-color: #b07a47;
+    cursor: not-allowed;
+    color: white;
+    border-radius: 4px;
+
+    padding: 8px 16px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #333;
+    filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
+    -webkit-filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
+}
+#newFileBtn:hover{
+    background-color: #e0d8cc;
+}
+#newFileBtn{
+    background-color: #b07a47;
+    cursor: not-allowed;
+    color: white;
+    border-radius: 4px;
+
+    padding: 8px 16px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #333;
+    filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
+    -webkit-filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
+}
+#saveFileBtn:hover{
+    background-color: #e0d8cc;
+}
+#saveFileBtn{
+    background-color: #b07a47;
+    cursor: not-allowed;
+    color: white;
+    border-radius: 4px;
+
+    padding: 8px 16px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #333;
+    filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
+    -webkit-filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
+}
+nav button:hover {
+    background-color: #e0d8cc;
+
+}
+.icons {
+    display: flex;
+    align-items: left;
+    margin-left: 600px;
+    gap: 5px;
+    font-size: 20px;
+    color: #8b5a2b;
+    filter:drop-shadow(10px 10px 10px rgba(0,0,0,0.2)) ;
+    -webkit-filter:drop-shadow(10px 10px 10px rgba(0,0,0,0.2)) ;
+}
+
+.tabs {
+    display: flex;
+    background-color: #f5f1e9;
+    padding: 4px 16px;
+    border-bottom: 1px solid #ddd;
+    flex-wrap: wrap;
+}
+
+.tab {
+    background-color: #fff;
+    padding: 8px 16px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    border-radius: 4px 4px 0 0;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tab.active {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-bottom: none;
+}
+
+.close {
+    margin-left: 8px;
+    color: #999;
+}
+
+.add-tab {
+    padding: 8px;
+    cursor: pointer;
+    color: #999;
+}
+.tab:hover {
+    background-color: gray;
+}
+main {
+    display: flex;
+    height: calc(100vh - 90px);
+    flex-wrap: wrap;
+}
+
+.line-numbers {
+    background-color: #f5f1e9;
+    padding: 8px;
+    text-align: right;
+    border-right: 1px solid #ddd;
+    user-select: none;
+    flex: 0 0 40px;
+    overflow-y: auto;
+    user-select:none; 
+    text-align: right;
+     padding-right: 10px;
+      border-right: 1px
+       solid #ccc;
+}
+
+.line-numbers div {
+    color: #999;
+    font-size: 14px;
+    line-height: 1.5;
+}
+.editor-container {display: flex; 
+               font-family: monospace;
+            height: 400px; border:
+             1px solid #ccc;
+              margin: 20px; 
+              overflow: hidden;}
+.editor {
+    flex: 1 1 auto;
+    background-color: #fff;
+    padding: 8px;
+    overflow: auto;
+}
+
+.sidebar {
+    flex: 0 0 200px;
+    background-color: #f5f1e9;
+    padding: 16px;
+    border-left: 1px solid #ddd;
+}
+.code-area {
+    
+    width: 850px;
+    border: none;
+    outline: none;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #fff;
+    white-space: pre;
+    overflow-x: auto;
+    resize: none;
+    
+    
+}
+
+.folder-name {
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.folder-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+ ul li:hover{
+    background-color: #e0d8cc;
+} 
+.sidebar li {
+    padding: 4px 0;
+    color: #8b5a2b;
+}
+
+@media (max-width: 1024px) {
+    .sidebar {
+        flex: 0 0 150px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        justify-content: space-between;
+    }
+
+    .icons {
+        margin-left: 0;
+    }
+
+    .line-numbers {
+        flex: 0 0 30px;
+    }
+
+.line-numbers, .code-area {
+  font-family: monospace;   /* same font */
+  font-size: 14px;          /* same size */
+  line-height: 1.4;         /* same line height */
+}
+.line-numbers div {
+    
+  padding: 0;
+  margin: 0;
+  height: 1.4em; 
+}
+.code-area {
+  padding: 0 8px;
+}
+
+    .sidebar {
+        flex: 0 0 100%;
+        border-left: none;
+        border-top: 1px solid #ddd;
+    }
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    gap: 10px;
+    background-color: #6f582b;
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 16px;
+    box-sizing: border-box;
+    height: 30px; /* Adjust height as needed */
+    align-items: center;
+    font-size: 12px;
+    color: #555;
+}
+.manu-bar{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    color: #f7f3f3;
+    padding: 10px;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    height: 30px; /* Adjust height as needed */
+    align-items: center;
+    width:fit-content;
+    font-size: 12px;
+}
+
+/* Hover effects */
+footer .option:hover,
+.manu-bar .option:hover {
+    color: #000;
+    cursor: pointer;
+}
+
+/* Spacing for icons */
+footer .icon span {
+    margin-right: 5px;
+}
+
+/* Adjust body to prevent content from being hidden under fixed footer */
+body {
+    padding-bottom: 30px; /* Match footer height */
+}
+ent content from being hidden under fixed footer */
+body {
+    padding-bottom: 30px; /* Match footer height */
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 20px;
+    }
+
+    nav button {
+        padding: 6px 12px;
+        font-size: 14px;
+        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1));
+        -webkit-filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1));
+}
+
+    .tab {
+        padding: 6px 12px;
+        font-size: 14px;
+    }
+    .tab {
+  transition: background 0.2s, font-weight 0.2s;
+}
+
+   
+
+.tab.active {
+  background-color: #c53434 !important; /* darker for active tab */
+  font-weight: bold;
+}
+
+
+    .line-numbers div {
+        font-size: 12px;
+    }
+}
+.file-explorer {
+    width: 200px;
+    background: #1e1e1e;
+    color: white;
+    padding: 10px;
+}
+
+.my-folder{
+    font-weight: bold;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.file-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.file-item {
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.file-item:hover {
+    background: #333;
+}
