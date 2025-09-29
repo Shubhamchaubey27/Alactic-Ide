@@ -4,6 +4,8 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f5f1e9;
     color: #333;
+
+    overflow: hidden;
 }
 
 header {
@@ -177,7 +179,10 @@ main {
             height: 400px; border:
              1px solid #ccc;
               margin: 20px; 
-              overflow: hidden;}
+             overflow: hidden;
+  scrollbar-width: none;
+            }
+
 .editor {
     flex: 1 1 auto;
     background-color: #fff;
@@ -204,6 +209,8 @@ main {
     white-space: pre;
     overflow-x: auto;
     resize: none;
+     overflow: hidden;
+  scrollbar-width: none;
     
     
 }
@@ -254,6 +261,7 @@ main {
   font-family: monospace;   /* same font */
   font-size: 14px;          /* same size */
   line-height: 1.4;         /* same line height */
+  /* hide scrollbar for Firefox */
 }
 .line-numbers div {
     
@@ -357,11 +365,22 @@ body {
     }
 }
 .file-explorer {
-    width: 200px;
-    background: #1e1e1e;
+    background-color: #b07a47;
+    cursor: not-allowed;
     color: white;
-    padding: 10px;
+    border-radius: 4px;
+
+    padding: 8px 16px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    color: #333;
+    filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
+    -webkit-filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
 }
+    
+
 
 .my-folder{
     font-weight: bold;
