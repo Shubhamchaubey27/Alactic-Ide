@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Alactic IDE</title>
   <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism-tomorrow.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-markup.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-css.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-javascript.min.js"></script>
 </head>
 <body>
   <header>
@@ -32,26 +37,21 @@
   </div>
 
   <main>
-    <div class="editor-container">
-      <div class="line-numbers" aria-hidden="true">
-        1
+    <!-- Sidebar (File Explorer) -->
+    <div class="sidebar">
+      <div class="file-explorer">
+        <div class="my-folder">📂 My Folder</div>
+        <ul class="file-list">
+          <!-- files will appear here -->
+        </ul>
       </div>
-      <textarea class="code-area" spellcheck="false" placeholder="// start typing..."></textarea>
     </div>
 
-    <div class="sidebar">
-      <div class="folder-name">Folder Name</div>
-      <ul>
-        <li class="btn">📄 File.actict(1)</li>
-        <li class="btn">📄 File.actict(2)</li>
-        <li class="btn">📄 File.actict(3)</li>
-        <li class="btn">📄 File.actict(4)</li>
-      </ul>
-    
-    <div class="file-explorer">
-    <div class="my-folder">📄My Folder</div>
-    <ul class="file-list"></ul> <!-- files will appear here -->
-</div>
+    <!-- Code Editor -->
+    <div class="editor-container">
+      <div class="line-numbers" aria-hidden="true">1</div>
+      <pre class="highlighted-code"><code class="language-html"></code></pre>
+      <textarea class="code-area" spellcheck="false" placeholder="// start typing..."></textarea>
     </div>
   </main>
 

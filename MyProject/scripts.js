@@ -393,3 +393,102 @@ alert('alactic editor is open source. Visit');
 loadTheme();
 
 // Toggle theme
+document.addEventListener("DOMContentLoaded", () => {
+  const codeArea = document.querySelector(".code-area");
+  const saveFileBtn = document.getElementById("saveFileBtn");
+  const sidebarFileList = document.querySelector(".file-explorer .my-folder .file-list");
+
+  // Load existing saved files
+  let files = JSON.parse(localStorage.getItem("files")) || {};
+
+  // Helper: get tab name
+  function getActiveTabName() {
+    const activeTab = document.querySelector(".tab.active");
+    return activeTab ? activeTab.textContent.replace("○", "").trim() : null;
+  }
+
+  // Show files in sidebar
+  function refreshSidebar() {
+    sidebarFileList.innerHTML = "";
+    Object.keys(files).forEach((filename) => {
+      const li = document.createElement("li");
+      li.className = "file-item";
+      li.dataset.filename = filename;
+      li.textContent = `📄 ${filename}`;
+      li.addEventListener("click", () => {
+        codeArea.value = files[filename];
+        switchTab(filename);
+      });
+      sidebarFileList.appendChild(li);
+    });
+  }
+
+  // Switch active tab
+  function switchTab(filename) {
+    document.querySelectorAll(".tab").forEach((tab) => {
+      tab.classList.remove("active");
+      if (tab.textContent.includes(filename)) {
+        tab.classList.add("active");
+      }
+    });
+    codeArea.value = files[filename] || "";
+  }
+
+  // Save file
+  saveFileBtn.addEventListener("click", () => {
+    const filename = getActiveTabName();
+    if (!filename) {
+      alert("No active tab to save!");
+      return;
+    }
+
+    const content = codeArea.value;
+    files[filename] = content;
+
+    // Save to localStorage
+    localStorage.setItem("files", JSON.stringify(files));
+
+    // Update sidebar
+    refreshSidebar();
+
+    // Small flash effect
+    const folderName = document.querySelector(".folder-name");
+    folderName.style.backgroundColor = "#007acc";
+    setTimeout(() => (folderName.style.backgroundColor = "transparent"), 500);
+
+    alert(`${filename} saved!`);
+  });
+
+  // Initial render
+  refreshSidebar();
+});
+// Select the Preview button
+const previewBtn = Array.from(document.querySelectorAll("button.btn")).find(btn => btn.textContent === "Preview");
+const previewContainer = document.querySelector(".preview-container");
+const previewFrame = document.querySelector(".preview-frame");
+
+// Function to show preview
+function showPreview() {
+    const activeTab = document.querySelector(".tab.active");
+    if (!activeTab) return;
+
+    const tabName = activeTab.textContent.replace("○", "").trim();
+
+    // Only preview HTML files
+    if (!tabName.endsWith(".html")) {
+        alert("Preview works only for HTML files!");
+        return;
+    }
+
+    // Show preview container
+    previewContainer.style.display = "block";
+
+    // Write code to iframe
+    const previewDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+    previewDoc.open();
+    previewDoc.write(codeArea.value);
+    previewDoc.close();
+}
+
+// Preview button click
+previewBtn.addEventListener("click", showPreview);
