@@ -1,15 +1,15 @@
-/* style.css */
+/* ===== BODY ===== */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: #f5f1e9;
     color: #333;
-
     overflow: hidden;
+    padding-bottom: 30px; /* space for footer */
 }
 
+/* ===== HEADER ===== */
 header {
-   
     margin-top: 10px;
     display: flex;
     align-items: center;
@@ -27,14 +27,12 @@ header {
 }
 
 nav {
-    
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 0px;
+    margin-bottom: 0;
 }
 
 nav button {
-    
     background-color: #f5f1e9;
     border: none;
     padding: 8px 16px;
@@ -44,69 +42,50 @@ nav button {
     border-radius: 4px;
     color: #333;
 }
+
 .btn {
     background-color: #b07a47;
-    cursor: not-allowed;
-    color: white;
+    color: #fff;
     border-radius: 4px;
     padding: 8px 16px;
     margin-right: 4px;
     margin-bottom: 4px;
+    filter: drop-shadow(8px 8px 8px rgba(0,0,0,0.2));
+    -webkit-filter: drop-shadow(8px 8px 8px rgba(0,0,0,0.2));
     cursor: pointer;
-    border-radius: 4px;
-    color: #333;
-    filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
-    -webkit-filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
 }
-#newFileBtn:hover{
-    background-color: #e0d8cc;
-}
-#newFileBtn{
-    background-color: #b07a47;
-    cursor: not-allowed;
-    color: white;
-    border-radius: 4px;
-    padding: 8px 16px;
-    margin-right: 4px;
-    margin-bottom: 4px;
-    cursor: pointer;
-    border-radius: 4px;
-    color: #333;
-    filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
-    -webkit-filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
-}
-#saveFileBtn:hover{
-    background-color: #e0d8cc;
-}
-#saveFileBtn{
-    background-color: #b07a47;
-    cursor: not-allowed;
-    color: white;
-    border-radius: 4px;
-    padding: 8px 16px;
-    margin-right: 4px;
-    margin-bottom: 4px;
-    cursor: pointer;
-    border-radius: 4px;
-    color: #333;
-    filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
-    -webkit-filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
-}
-nav button:hover {
-    background-color: #e0d8cc;
 
+#newFileBtn, #saveFileBtn {
+    background-color: #b07a47;
+    color: #fff;
+    border-radius: 4px;
+    padding: 8px 16px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    filter: drop-shadow(8px 8px 8px rgba(0,0,0,0.2));
+    -webkit-filter: drop-shadow(8px 8px 8px rgba(0,0,0,0.2));
+    cursor: pointer;
 }
+
+nav button:hover,
+#newFileBtn:hover,
+#saveFileBtn:hover,
+.btn:hover {
+    background-color: #e0d8cc;
+}
+
 .icons {
     display: flex;
-    align-items: left;
-    margin-left: 600px;
+    align-items: center;
+    margin-left: auto;
     gap: 5px;
     font-size: 20px;
     color: #8b5a2b;
-    filter:drop-shadow(10px 10px 10px rgba(0,0,0,0.2)) ;
-    -webkit-filter:drop-shadow(10px 10px 10px rgba(0,0,0,0.2)) ;
+    filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.2));
+    -webkit-filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.2));
 }
 
+/* ===== TABS ===== */
 .tabs {
     display: flex;
     background-color: #f5f1e9;
@@ -132,6 +111,10 @@ nav button:hover {
     border-bottom: none;
 }
 
+.tab:hover {
+    background-color: gray;
+}
+
 .close {
     margin-left: 8px;
     color: #999;
@@ -142,28 +125,68 @@ nav button:hover {
     cursor: pointer;
     color: #999;
 }
-.tab:hover {
-    background-color: gray;
-}
+
+/* ===== MAIN ===== */
 main {
     display: flex;
     height: calc(100vh - 90px);
-    flex-wrap: wrap;
+    flex-direction: left
+    ;
+}
+
+/* ===== SIDEBAR (FILE EXPLORER) ===== */
+.sidebar {
+    flex: 0 0 200px;
+    background-color: #f5f1e9;
+    padding: 16px;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.folder-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.sidebar-file {
+    display: block;
+    width: 100%;
+    padding: 8px 12px;
+    margin-bottom: 4px;
+    background-color: #f5f1e9;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    color: #be824a;
+    font-weight: 500;
+    text-align: left;
+}
+
+.sidebar-file:hover {
+    background-color: #e0d8cc;
+}
+
+/* ===== EDITOR CONTAINER ===== */
+.editor-container {
+    flex: 1;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+    background-color: #f5f1e9;
 }
 
 .line-numbers {
     background-color: #f5f1e9;
-    padding: 8px;
+    padding: 8px 10px;
     text-align: right;
-    border-right: 1px solid #ddd;
+    border-right: 1px solid #ccc;
     user-select: none;
     flex: 0 0 40px;
     overflow-y: auto;
-    user-select:none; 
-    text-align: right;
-     padding-right: 10px;
-      border-right: 1px
-       solid #ccc;
 }
 
 .line-numbers div {
@@ -171,70 +194,84 @@ main {
     font-size: 14px;
     line-height: 1.5;
 }
-.editor-container {display: flex; 
-               font-family: monospace;
-            height: 400px; border:
-             1px solid #ccc;
-              margin: 20px; 
-             overflow: hidden;
-  scrollbar-width: none;
-            }
 
-.editor {
-    flex: 1 1 auto;
-    background-color: #fff;
-    padding: 8px;
+/* ===== CODE AREA & HIGHLIGHTED CODE ===== */
+.highlighted-code {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 0px);
+    height: 100%;
+    margin: 0;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: pre-wrap;
     overflow: auto;
+    background-color: beige; /* ✅ beige */
+    color: #333;
+    z-index: 0;
+    pointer-events: none;
 }
 
-.sidebar {
-    flex: 0 0 200px;
-    background-color: #f5f1e9;
-    padding: 16px;
-    border-left: 1px solid #ddd;
-}
 .code-area {
-    
-    width: 850px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(100% - 0px);
+    height: 100%;
+    margin: 0;
+    padding: 10px;
+    font-family: monospace;
+    font-size: 14px;
+    line-height: 1.4;
+    white-space: pre-wrap;
+    overflow: auto;
+    background: transparent;
+    color: transparent;
+    caret-color: black;
     border: none;
     outline: none;
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 14px;
-    line-height: 1.5;
-    color: #333;
-    background-color: #fff;
-    white-space: pre;
-    overflow-x: auto;
     resize: none;
-     overflow: hidden;
-  scrollbar-width: none;
-    
-    
+    z-index: 1;
 }
 
-.folder-name {
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-.folder-name {
-    font-weight: bold;
-    margin-bottom: 10px;
-    padding: 5px;
-}
-
-.sidebar ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
- ul li:hover{
-    background-color: #e0d8cc;
-} 
-.sidebar li {
-    padding: 4px 0;
-    color: #8b5a2b;
+/* ===== FOOTER ===== */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #6f582b; /* your theme */
+    border-top: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 16px;
+    height: 30px;
+    align-items: center;
+    font-size: 12px;
+    color: #f7f3f3;
 }
 
+.manu-bar {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
+    height: 30px;
+    align-items: center;
+}
+
+/* Hover footer options */
+footer .option:hover,
+.manu-bar .option:hover {
+    color: #000;
+    cursor: pointer;
+}
+
+/* ===== MEDIA QUERIES ===== */
 @media (max-width: 1024px) {
     .sidebar {
         flex: 0 0 150px;
@@ -254,79 +291,15 @@ main {
         flex: 0 0 30px;
     }
 
-.line-numbers, .code-area {
-  font-family: monospace;   /* same font */
-  font-size: 14px;          /* same size */
-  line-height: 1.4;         /* same line height */
-  /* hide scrollbar for Firefox */
-}
-.line-numbers div {
-    
-  padding: 0;
-  margin: 0;
-  height: 1.4em; 
-}
-.code-area {
-  padding: 0 8px;
-}
-
     .sidebar {
         flex: 0 0 100%;
         border-left: none;
         border-top: 1px solid #ddd;
     }
-}
-footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    gap: 10px;
-    background-color: #6f582b;
-    border-top: 1px solid #ddd;
-    display: flex;
-    justify-content: space-between;
-    padding: 4px 16px;
-    box-sizing: border-box;
-    height: 30px; /* Adjust height as needed */
-    align-items: center;
-    font-size: 12px;
-    color: #555;
-}
-.manu-bar{
-    margin-top: 10px;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-    color: #f7f3f3;
-    padding: 10px;
-    justify-content: space-between;
-    width: 100%;
-    box-sizing: border-box;
-    height: 30px; /* Adjust height as needed */
-    align-items: center;
-    width:fit-content;
-    font-size: 12px;
-}
 
-/* Hover effects */
-footer .option:hover,
-.manu-bar .option:hover {
-    color: #000;
-    cursor: pointer;
-}
-
-/* Spacing for icons */
-footer .icon span {
-    margin-right: 5px;
-}
-
-/* Adjust body to prevent content from being hidden under fixed footer */
-body {
-    padding-bottom: 30px; /* Match footer height */
-}
-ent content from being hidden under fixed footer */
-body {
-    padding-bottom: 30px; /* Match footer height */
+    .line-numbers, .code-area {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 480px) {
@@ -337,68 +310,19 @@ body {
     nav button {
         padding: 6px 12px;
         font-size: 14px;
-        filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1));
-        -webkit-filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.1));
-}
+    }
 
     .tab {
         padding: 6px 12px;
         font-size: 14px;
     }
-    .tab {
-  transition: background 0.2s, font-weight 0.2s;
-}
 
-   
-
-.tab.active {
-  background-color: #c53434 !important; /* darker for active tab */
-  font-weight: bold;
-}
-
+    .tab.active {
+        background-color: #c53434 !important;
+        font-weight: bold;
+    }
 
     .line-numbers div {
         font-size: 12px;
     }
-}
-.file-explorer:hover {
-    background-color: #e0d8cc;
-}
-.file-explorer {
-   background-color: #b07a47;
-    cursor: not-allowed;
-    color: white;
-    border-radius: 4px;
-    padding: 8px 16px;
-    margin-right: 4px;
-    margin-bottom: 4px;
-    cursor: pointer;
-    border-radius: 4px;
-    color: #333;
-    filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));
-    -webkit-filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.2));;
-}
-    
-
-
-.my-folder{
-    font-weight: bold;
-    margin-bottom: 10px;
-    cursor: pointer;
-}
-
-.file-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.file-item {
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 4px;
-}
-
-.file-item:hover {
-    background: #333;
 }

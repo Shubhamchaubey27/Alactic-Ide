@@ -462,3 +462,33 @@ document.addEventListener("DOMContentLoaded", () => {
   // Initial render
   refreshSidebar();
 });
+// Select the Preview button
+const previewBtn = Array.from(document.querySelectorAll("button.btn")).find(btn => btn.textContent === "Preview");
+const previewContainer = document.querySelector(".preview-container");
+const previewFrame = document.querySelector(".preview-frame");
+
+// Function to show preview
+function showPreview() {
+    const activeTab = document.querySelector(".tab.active");
+    if (!activeTab) return;
+
+    const tabName = activeTab.textContent.replace("○", "").trim();
+
+    // Only preview HTML files
+    if (!tabName.endsWith(".html")) {
+        alert("Preview works only for HTML files!");
+        return;
+    }
+
+    // Show preview container
+    previewContainer.style.display = "block";
+
+    // Write code to iframe
+    const previewDoc = previewFrame.contentDocument || previewFrame.contentWindow.document;
+    previewDoc.open();
+    previewDoc.write(codeArea.value);
+    previewDoc.close();
+}
+
+// Preview button click
+previewBtn.addEventListener("click", showPreview);

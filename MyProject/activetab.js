@@ -132,4 +132,192 @@ codeArea.addEventListener('keydown', (e) => {
         }
     }
 });
+document.addEventListener("DOMContentLoaded", () => {
+    const codeArea = document.querySelector(".code-area");
+    const saveFileBtn = document.getElementById("saveFileBtn");
+    const addTabBtn = document.querySelector(".add-tab");
+    const sidebarFileList = document.querySelector(".file-list");
+    const folderName = document.querySelector(".folder-name");
 
+    let tabCounter = 4;
+    const tabContents = {
+        "Untitled-1.txt": "",
+        "Untitled-2.txt": "",
+        "Untitled-3.txt": ""
+    };
+
+    // Language icon map
+    const languageMap = {
+        js: "⚡", ts: "🔷", py: "🐍", java: "☕",
+        html: "🌐", css: "🎨", json: "🗄️", md: "📄",
+        txt: "📄", c: "📘", cpp: "📘", php: "🐘",
+        rb: "💎", go: "🐹", dart: "🎯", swift: "🕊️",
+        rs: "🦀", sh: "🐚", sql: "🗄️", lua: "🌙",
+        r: "📊", kt: "🤖"
+    };
+
+    function getIcon(filename) {
+        const ext = filename.split(".").pop().toLowerCase();
+        return languageMap[ext] || "📄";
+    }
+
+    function getActiveTab() {
+        return document.querySelector(".tab.active");
+    }
+
+    function updateTabIcon(tab) {
+        if (!tab) return;
+        // Check if icon span exists
+        let iconSpan = tab.querySelector(".icon");
+        const text = tab.textContent.replace("○", "").trim();
+        if (!iconSpan) {
+            iconSpan = document.createElement("span");
+            iconSpan.className = "icon";
+            tab.prepend(iconSpan);
+        }
+        iconSpan.textContent = getIcon(text);
+    }
+
+    function switchTab(tabName) {
+        const tabs = document.querySelectorAll(".tab");
+        const target = Array.from(tabs).find(t => t.textContent.replace("○", "").trim() === tabName);
+        if (target) {
+            const active = getActiveTab();
+            if (active) {
+                const activeName = active.textContent.replace("○", "").trim();
+                tabContents[activeName] = codeArea.value;
+            }
+            tabs.forEach(t => t.classList.remove("active"));
+            target.classList.add("active");
+            codeArea.value = tabContents[tabName] || "";
+            updateTabIcon(target);
+        }
+    }
+
+    function attachTabEvents(tab) {
+        const closeBtn = tab.querySelector(".close");
+        tab.addEventListener("click", () => switchTab(tab.textContent.replace("○", "").trim()));
+        closeBtn.addEventListener("click", e => {
+            e.stopPropagation();
+            const name = tab.textContent.replace("○", "").trim();
+            delete tabContents[name];
+            tab.remove();
+            updateSidebar();
+            const firstTab = document.querySelector(".tab");
+            if (firstTab) switchTab(firstTab.textContent.replace("○", "").trim());
+            else codeArea.value = "";
+        });
+
+        // Double-click rename
+        tab.addEventListener("dblclick", () => {
+            const oldName = tab.textContent.replace("○", "").trim();
+            const input = document.createElement("input");
+            input.type = "text";
+            input.value = oldName;
+            tab.innerHTML = "";
+            tab.appendChild(input);
+            input.focus();
+
+            input.addEventListener("blur", () => {
+                const newName = input.value.trim() || oldName;
+                tab.textContent = newName + " ";
+                const close = document.createElement("span");
+                close.className = "close";
+                close.textContent = "○";
+                tab.appendChild(close);
+                attachTabEvents(tab);
+                updateTabIcon(tab);
+            });
+
+            input.addEventListener("keydown", e => { if (e.key === "Enter") input.blur(); });
+        });
+    }
+
+    function updateSidebar() {
+        sidebarFileList.innerHTML = "";
+        Object.keys(tabContents).forEach(name => {
+            if (!name.startsWith("Untitled")) {
+                const li = document.createElement("li");
+                li.textContent = `${getIcon(name)} ${name}`;
+                li.addEventListener("click", () => switchTab(name));
+                sidebarFileList.appendChild(li);
+            }
+        });
+    }
+
+    // Initialize existing tabs
+    document.querySelectorAll(".tab").forEach(tab => {
+        attachTabEvents(tab);
+        updateTabIcon(tab);
+    });
+
+    // New tab button
+    addTabBtn.addEventListener("click", () => {
+        const newName = `Untitled-${tabCounter++}.txt`;
+        const newTab = document.createElement("div");
+        newTab.className = "tab";
+        newTab.innerHTML = newName + " <span class='close'>○</span>";
+        addTabBtn.insertAdjacentElement("beforebegin", newTab);
+        tabContents[newName] = "";
+        attachTabEvents(newTab);
+        updateTabIcon(newTab);
+        switchTab(newName);
+    });
+
+    // Save file button
+    saveFileBtn.addEventListener("click", () => {
+        const active = getActiveTab();
+        if (!active) return alert("No active tab!");
+        const name = active.textContent.replace("○", "").trim();
+        tabContents[name] = codeArea.value;
+        localStorage.setItem("files", JSON.stringify(tabContents));
+        updateTabIcon(active);
+        updateSidebar();
+        folderName.style.backgroundColor = "#007acc";
+        setTimeout(() => folderName.style.backgroundColor = "transparent", 500);
+        alert(`${name} saved!`);
+    });
+
+    // Load saved files
+    const saved = JSON.parse(localStorage.getItem("files"));
+    if (saved) Object.assign(tabContents, saved);
+    updateSidebar();
+    switchTab(Object.keys(tabContents)[0]);
+});
+
+const textarea = document.querySelector(".code-area");
+const highlightedCode = document.querySelector(".highlighted-code code");
+
+// Sync textarea → highlighted Prism preview
+function updateHighlight() {
+  // escape HTML to show correctly
+  let code = textarea.value.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  highlightedCode.textContent = code;
+
+  Prism.highlightElement(highlightedCode);
+
+  // Keep scroll in sync
+  highlightedCode.parentElement.scrollTop = textarea.scrollTop;
+  highlightedCode.parentElement.scrollLeft = textarea.scrollLeft;
+}
+
+textarea.addEventListener("input", updateHighlight);
+textarea.addEventListener("scroll", updateHighlight);
+
+// Initial run
+updateHighlight();
+
+function setLanguageByExtension(fileName) {
+  let lang = "javascript"; // default
+  if (fileName.endsWith(".html")) lang = "markup";
+  if (fileName.endsWith(".css")) lang = "css";
+  if (fileName.endsWith(".js")) lang = "javascript";
+  if (fileName.endsWith(".py")) lang = "python";
+  if (fileName.endsWith(".json")) lang = "json";
+
+  highlightedCode.className = "language-" + lang;
+  updateHighlight();
+}
+
+// Example:
+setLanguageByExtension("test.html");
