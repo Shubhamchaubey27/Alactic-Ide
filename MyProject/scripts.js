@@ -492,3 +492,4 @@ function showPreview() {
 
 // Preview button click
 previewBtn.addEventListener("click", showPreview);
+

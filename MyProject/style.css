@@ -172,72 +172,67 @@ main {
 
 /* ===== EDITOR CONTAINER ===== */
 .editor-container {
-    flex: 1;
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    background-color: #f5f1e9;
+  position: relative;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  font-family: monospace;
 }
 
+/* Line numbers */
+
+.editor-container {
+  position: relative;
+  display: flex;
+  height: 400px;
+  width: 100%;
+  font-family: monospace;
+  background: #fff;
+  overflow: hidden;
+}
+
+/* Line numbers on left */
 .line-numbers {
-    background-color: #f5f1e9;
-    padding: 8px 10px;
-    text-align: right;
-    border-right: 1px solid #ccc;
-    user-select: none;
-    flex: 0 0 40px;
-    overflow-y: auto;
+  flex: 0 0 40px;
+  background: #f5f1e9;
+  text-align: right;
+  padding: 12px 8px;
+  border-right: 1px solid #ccc;
+  user-select: none;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .line-numbers div {
-    color: #999;
-    font-size: 14px;
-    line-height: 1.5;
+  height: 1.4em; /* match textarea line-height */
+  line-height: 1.4em;
+  color: #999;
 }
 
-/* ===== CODE AREA & HIGHLIGHTED CODE ===== */
-.highlighted-code {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: calc(100% - 0px);
-    height: 100%;
-    margin: 0;
-    padding: 10px;
-    font-family: monospace;
-    font-size: 14px;
-    line-height: 1.4;
-    white-space: pre-wrap;
-    overflow: auto;
-    background-color: beige; /* ✅ beige */
-    color: #333;
-    z-index: 0;
-    pointer-events: none;
-}
 
 .code-area {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: calc(100% - 0px);
-    height: 100%;
-    margin: 0;
-    padding: 10px;
-    font-family: monospace;
-    font-size: 14px;
-    line-height: 1.4;
-    white-space: pre-wrap;
-    overflow: auto;
-    background: transparent;
-    color: transparent;
-    caret-color: black;
-    border: none;
-    outline: none;
-    resize: none;
-    z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 40px; /* offset for line numbers */
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 12px;
+  font-family: monospace;
+  font-size: 14px;
+  line-height: 1.4;
+  white-space: pre-wrap;
+  overflow: auto;
+  background: transparent;
+  color: black; /* hide raw text */
+  caret-color: black;
+  border: none;
+  outline: none;
+  resize: none;
+  z-index: 1; /* on top of highlighted code */
+  box-sizing: border-box;
 }
 
-/* ===== FOOTER ===== */
 footer {
     position: fixed;
     bottom: 0;
@@ -289,6 +284,7 @@ footer .option:hover,
 
     .line-numbers {
         flex: 0 0 30px;
+        color: #999;
     }
 
     .sidebar {
